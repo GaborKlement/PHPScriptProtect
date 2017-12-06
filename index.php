@@ -12,16 +12,8 @@ function getString($length) {
 $dir = "config/";
 
 if (is_dir($dir)) {
-	if ($dh = opendir($dir)) {
-		while (($file = readdir($dh)) !== false) {
-			if (is_file($dir.'/'.$file) && $file != "." && $file != "..") {
-				if ($file!=".DS_Store") {
-					$originalFile = $file;
-				}
-			}          			
-		}
-		closedir($dh);
-	}
+	$file = glob($dir.'config*.php');
+	$originalFile = $file[0];
 }
 
 $oldName = $dir.$originalFile;
